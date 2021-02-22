@@ -1,32 +1,32 @@
-> library(caret)
+library(caret)
 ## READING FILES
 
->training <- read.csv("pml-training.csv", header = TRUE, na.strings = c("NA","#DIV/0!", ""))
-> testing <- read.csv("pml-testing.csv", header = TRUE, na.strings = c("NA","#DIV/0!", ""))
+training <- read.csv("pml-training.csv", header = TRUE, na.strings = c("NA","#DIV/0!", ""))
+testing <- read.csv("pml-testing.csv", header = TRUE, na.strings = c("NA","#DIV/0!", ""))
 
 ##DELETING COLUMNS WITH NULL VALUES AND CLEANING
 
-> trainingset <- training[ ,colSums(is.na(training))==0]
-> testingset <- testing[ , colSums(is.na(testing))==0]
-> trainingset <- trainingset[ ,-c(1:7)]
-> testingset  <- testingset[ ,-c(1:7)]
+ trainingset <- training[ ,colSums(is.na(training))==0]
+ testingset <- testing[ , colSums(is.na(testing))==0]
+ trainingset <- trainingset[ ,-c(1:7)]
+ testingset  <- testingset[ ,-c(1:7)]
 
 ##CREATING DATA PARTION
 
-> inTrain <- createDataPartition(y=trainingset$classe, p=0.7, list = FALSE)
-> trainingset_train <- trainingset[inTrain, ]
-> trainingset_test  <- trainingset[-inTrain, ]
+ inTrain <- createDataPartition(y=trainingset$classe, p=0.7, list = FALSE)
+ trainingset_train <- trainingset[inTrain, ]
+ trainingset_test  <- trainingset[-inTrain, ]
 
 ##EXPLORATORY ANALYSIS
-> plot(factor(trainingset_train$classe), col="yellow", ylab = "Frequency", xlab = "classe")
+ plot(factor(trainingset_train$classe), col="yellow", ylab = "Frequency", xlab = "classe")
 
 ##MODEL 1
 
-> modFit1 <- train(classe ~., data = trainingset_train, method="rpart")
-> library(rattle)
-> fancyRpartPlot(modFit1$finalModel)
-> pred <- predict(modFit1, newdata = trainingset_test)
-> confusionMatrix(factor(trainingset_test$classe),pred)
+ modFit1 <- train(classe ~., data = trainingset_train, method="rpart")
+ library(rattle)
+ fancyRpartPlot(modFit1$finalModel)
+ pred <- predict(modFit1, newdata = trainingset_test) 
+ confusionMatrix(factor(trainingset_test$classe),pred)
 
 ## ACCURACY IS JUST 50%
 
