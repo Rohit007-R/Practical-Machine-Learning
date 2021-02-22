@@ -27,6 +27,39 @@ testing <- read.csv("pml-testing.csv", header = TRUE, na.strings = c("NA","#DIV/
  fancyRpartPlot(modFit1$finalModel)
  pred <- predict(modFit1, newdata = trainingset_test) 
  confusionMatrix(factor(trainingset_test$classe),pred)
+ 
+ Confusion Matrix and Statistics
+
+          Reference
+Prediction    A    B    C    D    E
+         A 2040   24  162    0    6
+         B  639  503  376    0    0
+         C  643   43  682    0    0
+         D  575  243  468    0    0
+         E  216  183  386    0  657
+
+Overall Statistics
+                                          
+               Accuracy : 0.4948          
+                 95% CI : (0.4837, 0.5059)
+    No Information Rate : 0.5242          
+    P-Value [Acc > NIR] : 1               
+                                          
+                  Kappa : 0.3393          
+                                          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.4960  0.50502  0.32883       NA  0.99095
+Specificity            0.9486  0.85182  0.88115   0.8361  0.89071
+Pos Pred Value         0.9140  0.33136  0.49854       NA  0.45562
+Neg Pred Value         0.6307  0.92209  0.78512       NA  0.99906
+Prevalence             0.5242  0.12694  0.26434   0.0000  0.08450
+Detection Rate         0.2600  0.06411  0.08692   0.0000  0.08374
+Detection Prevalence   0.2845  0.19347  0.17436   0.1639  0.18379
+Balanced Accuracy      0.7223  0.67842  0.60499       NA  0.94083
 
 ## ACCURACY IS JUST 50%
 
