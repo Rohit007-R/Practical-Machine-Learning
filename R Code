@@ -65,4 +65,6 @@ Balanced Accuracy      0.7223  0.67842  0.60499       NA  0.94083
 
 ##MODEL2
 
+modFit2 <- train(trainingset_train$classe ~., data=trainingset_train, method="rf")
+
 
