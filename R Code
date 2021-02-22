@@ -13,7 +13,7 @@ testing <- read.csv("pml-testing.csv", header = TRUE, na.strings = c("NA","#DIV/
 
 ##CREATING DATA PARTION
 
- inTrain <- createDataPartition(y=trainingset$classe, p=0.7, list = FALSE)
+ inTrain <- createDataPartition(y=trainingset$classe, p=0.6, list = FALSE)
  trainingset_train <- trainingset[inTrain, ]
  trainingset_test  <- trainingset[-inTrain, ]
 
